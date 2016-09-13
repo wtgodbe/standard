@@ -13,8 +13,9 @@
     <GenFacadesArgs>$(GenFacadesArgs) -ignoreMissingTypes</GenFacadesArgs>
     <BaselineAllAPICompatError>true</BaselineAllAPICompatError>
     <ApiCompatBaseline>$(MSBuildProjectDirectory)\ApiCompatBaseline.$(TargetGroup).txt</ApiCompatBaseline>
+    <NoWarn>$(NoWarn);1685</NoWarn>
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup Condition="!$(TargetGroup.StartsWith('netcoreapp'))">
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\mscorlib.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.ComponentModel.Composition.csproj" />
@@ -54,6 +55,281 @@
   <ItemGroup Condition="'$(TargetGroup)'=='xamarin.android'">
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\System.Web.Services.csproj" />
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\Mono.Android.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)' == 'netcoreapp1.1.ref'">
+    <ReferencePath Include="$(NETCoreAppPath)ref\netcoreapp1.1\*.dll" Exclude="@(ExcludePath)" />
+
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsConst">
+      <Assembly>System.Runtime</Assembly>
+    </SeedTypePreference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)' == 'netcoreapp1.0'">
+    <ReferencePath Include="\\fxcore\Platforms\ApiCatalog\.NET Core App 1.0 (ref)\*.dll" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetGroup)' == 'netcoreapp1.1'">
+    <ExcludePath Include="$(NETCoreAppPath)runtime\netcoreapp1.1.win7-x64\System.Security.Permissions.dll " />
+    <!-- TODO: Need to restore netcoreapp1.1 platform from packages -->
+    <ReferencePath Include="$(NETCoreAppPath)runtime\netcoreapp1.1.win7-x64\*.dll" Exclude="@(ExcludePath)" />
+
+    <SeedTypePreference Include="System.AppDomain">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.AppDomainUnloadedException">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.CannotUnloadAppDomainException">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.Versioning.ComponentGuaranteesAttribute">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.Versioning.ComponentGuaranteesOptions">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.Versioning.ResourceExposureAttribute">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.Versioning.ResourceScope">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.Versioning.VersioningHelper">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.BitConverter">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Collections.CollectionBase">
+      <Assembly>System.Collections.NonGeneric</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Collections.ObjectModel.KeyedCollection`2">
+      <Assembly>System.ObjectModel</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Collections.ObjectModel.ReadOnlyDictionary`2">
+      <Assembly>System.ObjectModel</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection">
+      <Assembly>System.ObjectModel</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection">
+      <Assembly>System.ObjectModel</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Collections.StructuralComparisons">
+      <Assembly>System.Collections</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Console">
+      <Assembly>System.Console</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.DBNull">
+      <Assembly>System.Data.Common</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Environment">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Globalization.IdnMapping">
+      <Assembly>System.Globalization.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.FileAccess">
+      <Assembly>System.IO.FileSystem.Primitives</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.Path">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.UnmanagedMemoryAccessor">
+      <Assembly>System.IO.UnmanagedMemoryStream</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.UnmanagedMemoryStream">
+      <Assembly>System.IO.UnmanagedMemoryStream</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.StreamReader">
+      <Assembly>System.IO</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.StreamWriter">
+      <Assembly>System.IO</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.StringReader">
+      <Assembly>System.IO</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.StringWriter">
+      <Assembly>System.IO</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.TextReader">
+      <Assembly>System.IO</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IO.TextWriter">
+      <Assembly>System.IO</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Resources.IResourceReader">
+      <Assembly>System.ComponentModel.TypeConverter</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Resources.ResourceReader">
+      <Assembly>System.Resources.Reader</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Resources.ResourceSet">
+      <Assembly>System.ComponentModel.TypeConverter</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.IServiceProvider">
+      <Assembly>System.ComponentModel</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.OperatingSystem">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.PlatformID">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Reflection.RuntimeReflectionExtensions">
+      <Assembly>System.Runtime</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.ReadOnlyCollectionBuilder`1">
+      <Assembly>System.Linq.Expressions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.RuntimeOps">
+      <Assembly>System.Linq.Expressions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.Serialization.FormatterServices">
+      <Assembly>System.Runtime.Serialization.Formatters</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Security.Principal.IIdentity">
+      <Assembly>System.Security.Principal</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Security.Principal.IPrincipal">
+      <Assembly>System.Security.Principal</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Security.Principal.TokenImpersonationLevel">
+      <Assembly>System.Security.Principal</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Threading.CountdownEvent">
+      <Assembly>System.Threading</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Threading.WaitHandleExtensions">
+      <Assembly>System.Runtime.Handles</Assembly>
+    </SeedTypePreference>
+
+    <SeedTypePreference Include="System.Runtime.CompilerServices.CallConvCdecl">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.CallConvFastcall">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.CallConvStdcall">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.CallConvThiscall">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsBoxed">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsByValue">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsConst">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsCopyConstructed">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsExplicitlyDereferenced">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsImplicitlyDereferenced">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsJitIntrinsic">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsLong">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsSignUnspecifiedByte">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsUdtReturn">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.IsVolatile">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.NativeCppClassAttribute">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.RequiredAttributeAttribute">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.ApplicationId">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Collections.BitArray">
+      <Assembly>System.Collections</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.LocalDataStoreSlot">
+      <Assembly>System.Threading.Thread</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Net.HttpVersion">
+      <Assembly>System.Net.Primitives</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.SpecialNameAttribute">
+      <Assembly>System.Runtime</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.ComAliasNameAttribute">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.ComCompatibleVersionAttribute">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.ComConversionLossAttribute">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.ComRegisterFunctionAttribute">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.ComUnregisterFunctionAttribute">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.ICustomFactory">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.ICustomMarshaler">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.PrimaryInteropAssemblyAttribute">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.ProgIdAttribute">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.InteropServices.LCIDConversionAttribute">
+      <Assembly>System.Runtime.InteropServices</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Threading.Thread">
+      <Assembly>System.Threading.Thread</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Threading.ThreadAbortException">
+      <Assembly>System.Threading.Thread</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.LoaderOptimization">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.LoaderOptimizationAttribute">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Runtime.CompilerServices.CompilerMarshalOverride">
+      <Assembly>System.Runtime.CompilerServices.VisualC</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Security.Permissions.CodeAccessSecurityAttribute">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Security.Permissions.SecurityAction">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Security.Permissions.SecurityAttribute">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Security.Permissions.SecurityPermissionAttribute">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
+    <SeedTypePreference Include="System.Security.Permissions.SecurityPermissionFlag">
+      <Assembly>System.Runtime.Extensions</Assembly>
+    </SeedTypePreference>
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))\dir.targets" />
 </Project>

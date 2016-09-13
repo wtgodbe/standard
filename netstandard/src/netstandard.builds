@@ -20,6 +20,12 @@
     <Project Include="netstandard.csproj">
       <TargetGroup>net461</TargetGroup>
     </Project>
+    <Project Include="netstandard.csproj" Condition="Exists('$(NETCoreAppPath)')">
+      <TargetGroup>netcoreapp1.1</TargetGroup>
+    </Project>
+    <Project Include="netstandard.csproj" Condition="Exists('$(NETCoreAppPath)')">
+      <TargetGroup>netcoreapp1.1.ref</TargetGroup>
+    </Project>
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
 </Project>
