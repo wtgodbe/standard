@@ -22,5 +22,9 @@
       <Uri>https://github.com/dotnet/arcade</Uri>
       <Sha>3e5a80ca5278072b3ac250ffdc568ed2ae27c68d</Sha>
     </Dependency>
+    <Dependency Name="Microsoft.NETCore.App" Version="3.0.0-preview-27309-1">
+      <Uri>https://github.com/dotnet/core-setup</Uri>
+      <Sha>2f528e5f158aa41789f7967cf8e8b868a8173d95</Sha>
+    </Dependency>
   </ToolsetDependencies>
 </Dependencies>

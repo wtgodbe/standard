@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!--- Override NETCoreAppMaximumVersion so we can restore the latest version -->
+    <NETCoreAppMaximumVersion>999.999</NETCoreAppMaximumVersion>
+    <NuGetDeploySourceItem>Reference</NuGetDeploySourceItem>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <OutputPath>$(RestoredRefRootPath)$(TargetFramework)</OutputPath>
+    <RestoreOutputPath>$(IntermediateOutputPath)</RestoreOutputPath>
+    <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.App" Version="$(MicrosoftNETCoreAppPackageVersion)" />
+  </ItemGroup>
+</Project>

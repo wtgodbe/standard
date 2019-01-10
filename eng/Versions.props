@@ -25,5 +25,6 @@
     <MicrosoftDotNetBuildTasksPackagingPackageVersion>1.0.0-beta.19054.8</MicrosoftDotNetBuildTasksPackagingPackageVersion>
     <MicrosoftDotNetCodeAnalysisPackageVersion>1.0.0-beta.19054.8</MicrosoftDotNetCodeAnalysisPackageVersion>
     <MicrosoftDotNetGenAPIPackageVersion>1.0.0-beta.19054.8</MicrosoftDotNetGenAPIPackageVersion>
+    <MicrosoftNETCoreAppPackageVersion>3.0.0-preview-27309-1</MicrosoftNETCoreAppPackageVersion>
   </PropertyGroup>
 </Project>
