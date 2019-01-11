@@ -20,6 +20,9 @@
     <Project Include="netstandard.csproj">
       <TargetGroup>net461</TargetGroup>
     </Project>
+    <Project Include="netstandard.csproj">
+      <TargetGroup>netcoreapp3.0</TargetGroup>
+    </Project>
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.traversal.targets))\dir.traversal.targets" />
 </Project>

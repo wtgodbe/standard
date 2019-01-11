@@ -40,7 +40,12 @@
       <TargetFramework>$(TargetGroup)</TargetFramework>
     </PackageDestination>
   </ItemGroup>
-  <ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetGroup)' != 'netcoreapp3.0'">
     <ProjectReference Include="..\..\platforms\$(TargetGroup)\**\*.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetGroup)' == 'netcoreapp3.0'">
+    <Reference Include="$(ArtifactsBinDir)ref/$(TargetGroup)/" />
   </ItemGroup>
 </Project>

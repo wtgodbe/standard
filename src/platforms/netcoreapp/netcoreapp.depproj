@@ -5,10 +5,17 @@
     <NETCoreAppMaximumVersion>999.999</NETCoreAppMaximumVersion>
     <NuGetDeploySourceItem>Reference</NuGetDeploySourceItem>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <OutputPath>$(RestoredRefRootPath)$(TargetFramework)</OutputPath>
-    <RestoreOutputPath>$(IntermediateOutputPath)</RestoreOutputPath>
+    <OutputPath>$(ArtifactsBinDir)ref/$(TargetFramework)/</OutputPath>
+    <OutDir>$(OutputPath)</OutDir>
+    <RestoreOutputPath>$(OutputPath)</RestoreOutputPath>
     <ProjectAssetsFile>$(RestoreOutputPath)/project.assets.json</ProjectAssetsFile>
   </PropertyGroup>
+
+  <!-- Don't copy netstandard.dll -->
+  <ItemGroup>
+    <FileToExclude Include="netstandard" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.App" Version="$(MicrosoftNETCoreAppPackageVersion)" />
   </ItemGroup>
