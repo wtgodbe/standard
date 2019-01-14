@@ -46,6 +46,6 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetGroup)' == 'netcoreapp3.0'">
-    <Reference Include="$(ArtifactsBinDir)ref/$(TargetGroup)/" />
+    <Reference Include="$(ArtifactsBinDir)ref\$(TargetGroup)\*.dll" />
   </ItemGroup>
 </Project>
